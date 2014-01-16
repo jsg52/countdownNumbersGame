@@ -26,6 +26,7 @@ bool oper(int & result, const int & a, const int & b, const int & operatorNumber
 			break;
 		default: 
 			cout<<"oper what??"<<endl;
+			return false;
 	}
 	return true;
 };
@@ -39,19 +40,16 @@ string opStr(const int & i) {
                 case 2: //subtract
                         return "-";
                 case 3: //antisubtract
-                        return "--";
+                        return "anti-";
                 case 4: //divide
-                        return "div";
+                        return "/";
                 case 5: //anti-divide
-                        return "antidiv";
+                        return "anti/";
         }
 	throw string("huh?");
 };
 
 bool solve(int * data, const int & target, const int & length, string & toReturn) {
-	if(data[0] == target) {
-		//return true;
-	}
 	int temp1; int temp2;
 	for(int i = 0; i < length - 1; i++) {
 		for(int j = i + 1; j < length; j++) {
@@ -106,3 +104,4 @@ int main() {
 	if(solve(numbers, target, 6, toReturn)) cout<<"Solution:"<<endl<<toReturn<<endl;
 	else cout<<"No solution."<<endl;
 };
+
