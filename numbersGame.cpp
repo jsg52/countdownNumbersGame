@@ -50,23 +50,21 @@ string opStr(const int & i) {
 };
 
 bool solve(int * data, const int & target, const int & length, string & toReturn) {
-	int temp1; int temp2;
+	int temp1; int temp2; int temp3;
 	for(int i = 0; i < length - 1; i++) {
 		for(int j = i + 1; j < length; j++) {
+			temp1 = data[i];
+			temp2 = data[j];
 			for(int k = 0; k < 6; k++) {
-				temp1 = data[i];
-				int temp3;
 				stringstream toRet;
 
 				if(oper(temp3, data[i], data[j], k)) {
-				toRet <<toReturn << data[i] << string(" ") << opStr(k) << string(" ") << data[j] <<" = "<<temp3<<string("\n");
+					toRet <<toReturn << data[i] << string(" ") << opStr(k) << string(" ") << data[j] <<" = "<<temp3<<string("\n");
 
 				if(temp3 == target) {
-					toRet<<target<<string("\n");
 					toReturn = toRet.str();
 					return true;
 				}
-				temp2 = data[j];
 				data[i] = temp3;
 				data[j] = data[length - 1];
 				string toRetStr = toRet.str();
@@ -74,10 +72,10 @@ bool solve(int * data, const int & target, const int & length, string & toReturn
 					toReturn = toRetStr;
 					return true;
 				}
-				data[j] = temp2;
-				data[i] = temp1;
 				}
 			}
+			data[j] = temp2;
+                        data[i] = temp1;
 		}
 	}			
 	return false;
@@ -104,4 +102,5 @@ int main() {
 	if(solve(numbers, target, 6, toReturn)) cout<<"Solution:"<<endl<<toReturn<<endl;
 	else cout<<"No solution."<<endl;
 };
+
 
